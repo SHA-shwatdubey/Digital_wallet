@@ -60,6 +60,7 @@ springdoc:
   api-docs:
     enabled: true
   swagger-ui:
+    path: /swagger-ui/index.html
     urls:
       - name: auth-service
         url: /v3/api-docs/auth-service
@@ -77,4 +78,6 @@ management:
     web:
       exposure:
         include: health,info
+
+
 
