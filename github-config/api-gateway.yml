@@ -61,7 +61,10 @@ springdoc:
     enabled: true
   swagger-ui:
     path: /swagger-ui.html
+    urlsPrimaryName: API Gateway
     urls:
+      - name: API Gateway
+        url: /v3/api-docs
       - name: API Gateway - Auth Service
         url: /v3/api-docs/auth-service
       - name: API Gateway - User KYC Service
