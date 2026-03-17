@@ -1,6 +1,9 @@
 server:
   port: 8068
 
+server:
+  port: 8068
+
 spring:
   datasource:
     url: jdbc:postgresql://postgres:5432/transaction_db
