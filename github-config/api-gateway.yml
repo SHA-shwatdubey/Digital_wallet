@@ -25,6 +25,52 @@ spring:
           uri: lb://admin-service
           predicates:
             - Path=/api/admin/**,/api/campaigns/**
+        - id: auth-service-docs
+          uri: lb://auth-service
+          predicates:
+            - Path=/v3/api-docs/auth-service
+          filters:
+            - RewritePath=/v3/api-docs/auth-service,/v3/api-docs
+        - id: user-kyc-service-docs
+          uri: lb://user-kyc-service
+          predicates:
+            - Path=/v3/api-docs/user-kyc-service
+          filters:
+            - RewritePath=/v3/api-docs/user-kyc-service,/v3/api-docs
+        - id: wallet-service-docs
+          uri: lb://wallet-service
+          predicates:
+            - Path=/v3/api-docs/wallet-service
+          filters:
+            - RewritePath=/v3/api-docs/wallet-service,/v3/api-docs
+        - id: rewards-service-docs
+          uri: lb://rewards-service
+          predicates:
+            - Path=/v3/api-docs/rewards-service
+          filters:
+            - RewritePath=/v3/api-docs/rewards-service,/v3/api-docs
+        - id: admin-service-docs
+          uri: lb://admin-service
+          predicates:
+            - Path=/v3/api-docs/admin-service
+          filters:
+            - RewritePath=/v3/api-docs/admin-service,/v3/api-docs
+
+springdoc:
+  api-docs:
+    enabled: true
+  swagger-ui:
+    urls:
+      - name: auth-service
+        url: /v3/api-docs/auth-service
+      - name: user-kyc-service
+        url: /v3/api-docs/user-kyc-service
+      - name: wallet-service
+        url: /v3/api-docs/wallet-service
+      - name: rewards-service
+        url: /v3/api-docs/rewards-service
+      - name: admin-service
+        url: /v3/api-docs/admin-service
 
 management:
   endpoints:
