@@ -62,15 +62,15 @@ springdoc:
   swagger-ui:
     path: /swagger-ui.html
     urls:
-      - name: auth-service
+      - name: Auth Service
         url: /v3/api-docs/auth-service
-      - name: user-kyc-service
+      - name: User KYC Service
         url: /v3/api-docs/user-kyc-service
-      - name: wallet-service
+      - name: Wallet Service
         url: /v3/api-docs/wallet-service
-      - name: rewards-service
+      - name: Rewards Service
         url: /v3/api-docs/rewards-service
-      - name: admin-service
+      - name: Admin Service
         url: /v3/api-docs/admin-service
 
 management:
@@ -78,6 +78,7 @@ management:
     web:
       exposure:
         include: health,info
+
 
 
 
