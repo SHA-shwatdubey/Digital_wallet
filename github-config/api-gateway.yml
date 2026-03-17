@@ -1,0 +1,88 @@
+server:
+  port: 8062
+
+spring:
+  cloud:
+    gateway:
+      routes:
+        - id: auth-service
+          uri: lb://auth-service
+          predicates:
+            - Path=/api/auth/**
+        - id: user-kyc-service
+          uri: lb://user-kyc-service
+          predicates:
+            - Path=/api/kyc/**,/api/users/**
+        - id: wallet-service
+          uri: lb://wallet-service
+          predicates:
+            - Path=/api/wallet/**
+        - id: rewards-service
+          uri: lb://rewards-service
+          predicates:
+            - Path=/api/rewards/**
+        - id: admin-service
+          uri: lb://admin-service
+          predicates:
+            - Path=/api/admin/**,/api/campaigns/**
+        - id: auth-service-docs
+          uri: lb://auth-service
+          predicates:
+            - Path=/v3/api-docs/auth-service
+          filters:
+            - RewritePath=/v3/api-docs/auth-service,/v3/api-docs
+        - id: user-kyc-service-docs
+          uri: lb://user-kyc-service
+          predicates:
+            - Path=/v3/api-docs/user-kyc-service
+          filters:
+            - RewritePath=/v3/api-docs/user-kyc-service,/v3/api-docs
+        - id: wallet-service-docs
+          uri: lb://wallet-service
+          predicates:
+            - Path=/v3/api-docs/wallet-service
+          filters:
+            - RewritePath=/v3/api-docs/wallet-service,/v3/api-docs
+        - id: rewards-service-docs
+          uri: lb://rewards-service
+          predicates:
+            - Path=/v3/api-docs/rewards-service
+          filters:
+            - RewritePath=/v3/api-docs/rewards-service,/v3/api-docs
+        - id: admin-service-docs
+          uri: lb://admin-service
+          predicates:
+            - Path=/v3/api-docs/admin-service
+          filters:
+            - RewritePath=/v3/api-docs/admin-service,/v3/api-docs
+
+springdoc:
+  api-docs:
+    enabled: true
+  swagger-ui:
+    path: /swagger-ui.html
+    urlsPrimaryName: API Gateway
+    urls:
+      - name: API Gateway
+        url: /v3/api-docs
+      - name: API Gateway - Auth Service
+        url: /v3/api-docs/auth-service
+      - name: API Gateway - User KYC Service
+        url: /v3/api-docs/user-kyc-service
+      - name: API Gateway - Wallet Service
+        url: /v3/api-docs/wallet-service
+      - name: API Gateway - Rewards Service
+        url: /v3/api-docs/rewards-service
+      - name: API Gateway - Admin Service
+        url: /v3/api-docs/admin-service
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info
+
+
+
+
+
