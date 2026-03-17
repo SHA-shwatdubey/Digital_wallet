@@ -1,0 +1,34 @@
+server:
+  port: 8062
+
+spring:
+  cloud:
+    gateway:
+      routes:
+        - id: auth-service
+          uri: lb://auth-service
+          predicates:
+            - Path=/api/auth/**
+        - id: user-kyc-service
+          uri: lb://user-kyc-service
+          predicates:
+            - Path=/api/kyc/**,/api/users/**
+        - id: wallet-service
+          uri: lb://wallet-service
+          predicates:
+            - Path=/api/wallet/**
+        - id: rewards-service
+          uri: lb://rewards-service
+          predicates:
+            - Path=/api/rewards/**
+        - id: admin-service
+          uri: lb://admin-service
+          predicates:
+            - Path=/api/admin/**,/api/campaigns/**
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info
+
