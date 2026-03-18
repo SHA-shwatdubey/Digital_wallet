@@ -1,6 +1,9 @@
+server:
+  port: 8068
+
 spring:
   datasource:
-    url: jdbc:postgresql://postgres:5432/wallet_user_db
+    url: jdbc:postgresql://localhost:5432/transaction_db
     username: postgres
     password: root
   jpa:
@@ -9,14 +12,11 @@ spring:
     properties:
       hibernate:
         dialect: org.hibernate.dialect.PostgreSQLDialect
-
-eureka:
-  client:
-    service-url:
-      defaultZone: http://eureka-server:8761/eureka/
-
-server:
-  port: 8064
+  rabbitmq:
+    host: localhost
+    port: 5672
+    username: guest
+    password: guest
 
 management:
   endpoints:
@@ -30,4 +30,5 @@ springdoc:
     path: /v3/api-docs
   swagger-ui:
     path: /swagger-ui.html
+
 

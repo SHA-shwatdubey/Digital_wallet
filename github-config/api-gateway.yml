@@ -25,6 +25,10 @@ spring:
           uri: lb://admin-service
           predicates:
             - Path=/api/admin/**,/api/campaigns/**
+        - id: transaction-service
+          uri: lb://transaction-service
+          predicates:
+            - Path=/transactions/**,/api/transactions/**
         - id: auth-service-docs
           uri: lb://auth-service
           predicates:
@@ -55,6 +59,12 @@ spring:
             - Path=/v3/api-docs/admin-service
           filters:
             - RewritePath=/v3/api-docs/admin-service,/v3/api-docs
+        - id: transaction-service-docs
+          uri: lb://transaction-service
+          predicates:
+            - Path=/v3/api-docs/transaction-service
+          filters:
+            - RewritePath=/v3/api-docs/transaction-service,/v3/api-docs
 
 springdoc:
   api-docs:
@@ -65,22 +75,26 @@ springdoc:
     urls:
       - name: API Gateway
         url: /v3/api-docs
-      - name: API Gateway - Auth Service
+      - name: Auth Service
         url: /v3/api-docs/auth-service
-      - name: API Gateway - User KYC Service
+      - name: User KYC Service
         url: /v3/api-docs/user-kyc-service
-      - name: API Gateway - Wallet Service
+      - name: Wallet Service
         url: /v3/api-docs/wallet-service
-      - name: API Gateway - Rewards Service
+      - name: Rewards Service
         url: /v3/api-docs/rewards-service
-      - name: API Gateway - Admin Service
+      - name: Admin Service
         url: /v3/api-docs/admin-service
+      - name: Transaction Service
+        url: /v3/api-docs/transaction-service
 
 management:
   endpoints:
     web:
       exposure:
         include: health,info
+
+
 
 
 
